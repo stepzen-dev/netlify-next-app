@@ -9,5 +9,5 @@
   incoming-hooks = ["StepZen"]
 
 [template.environment]
-  STEPZEN_ACCOUNT = "Add your StepZen account name"
-  STEPZEN_ADMIN_KEY = "Add your StepZen admin key"
+  NEXT_PUBLIC_STEPZEN_URI = "Add your StepZen account name"
+  NEXT_PUBLIC_STEPZEN_API_KEY = "Add your StepZen admin key"
