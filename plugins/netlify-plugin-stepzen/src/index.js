@@ -19,14 +19,14 @@ module.exports = {
     // Better environment variables to set as conditional?
 
 
-      console.log('args.packageJson.depedencies', args.packageJson.depedencies);
-    if(!args.packageJson.depedencies.next) {
+      console.log('args.packageJson.dependencies', args.packageJson.dependencies);
+    if(!args.packageJson.dependencies.next) {
       console.log('its not here')
     }
-    if(args.packageJson.depedencies.next) {
+    if(args.packageJson.dependencies.next) {
       buildEnv = "next"
     }
-    if(args.packageJson.depedencies.gatsby) {
+    if(args.packageJson.dependencies.gatsby) {
       buildEnv = "gatsby"
     }
   },
