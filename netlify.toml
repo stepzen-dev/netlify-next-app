@@ -1,0 +1,13 @@
+[build]
+  command = "npm build"
+  publish = "public"
+
+[[plugins]]
+  package = "/plugins/netlify-plugin-stepzen"
+
+[template]
+  incoming-hooks = ["StepZen"]
+
+[template.environment]
+  STEPZEN_ACCOUNT = "Add your StepZen account name"
+  STEPZEN_ADMIN_KEY = "Add your StepZen admin key"
