@@ -17,6 +17,12 @@ module.exports = {
     let buildEnv = "react"
 
     // Better environment variables to set as conditional?
+
+
+      console.log('args.packageJson.depedencies', args.packageJson.depedencies);
+    if(!args.packageJson.depedencies.next) {
+      console.log('its not here')
+    }
     if(args.packageJson.depedencies.next) {
       buildEnv = "next"
     }
