@@ -46,8 +46,8 @@ module.exports = {
       if(!args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_API_KEY) {
         return args.utils.build.failBuild('Failed finding the NEXT_PUBLIC_STEPZEN_API_KEY in the Netlify Environment Variables.')
       }
-      if(!args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_URI) {
-        return utils.build.failBuild('Failed finding the NEXT_PUBLIC_STEPZEN_URI in the Netlify Environment Variables.')
+      if(!args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_ACCOUNT) {
+        return utils.build.failBuild('Failed finding the NEXT_PUBLIC_STEPZEN_ACCOUNT in the Netlify Environment Variables.')
       }
     }
     const stepzenAccount = args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_ACCOUNT
