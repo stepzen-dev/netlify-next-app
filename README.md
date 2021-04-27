@@ -1,6 +1,6 @@
 
 
-https://app.netlify.com/start/deploy?repository=https://github.com/stepzen-samples/netlify-next-app
+<a href="https://app.netlify.com/start/deploy?repository=https://app.netlify.com/start/deploy?repository=https://github.com/stepzen-samples/netlify-next-app"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" /></a>
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
