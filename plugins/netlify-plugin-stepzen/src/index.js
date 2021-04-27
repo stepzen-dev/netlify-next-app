@@ -60,7 +60,7 @@ module.exports = {
       account: stepzenAccount,
       adminkey: stepzenSecret,
     })
-    await client.upload.schema(`${stepzenFolder}/${stepzenSchema}`, "../stepzen")
+    await client.upload.schema(`${stepzenFolder}/${stepzenSchema}`, "stepzen")
     await client.deploy(
       `${stepzenFolder}/${stepzenEndpoint}`,
       {
