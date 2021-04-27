@@ -71,6 +71,7 @@ module.exports = {
         schema: `${stepzenFolder}/${stepzenSchema}`,
       },
     )
+    console.log('client', client)
     args.utils.status.show({summary: 'Success!'})
   },
   async onPostBuild( args ) {},
