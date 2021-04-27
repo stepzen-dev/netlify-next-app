@@ -14,15 +14,35 @@ module.exports = {
     // end Optional Plugin Values
 
     args.utils.status.show({ summary: 'Success!' })
+    let buildEnv = "react"
+
+    // Better environment variables to set as conditional?
+    if(args.packageJson.depedencies.next) {
+      buildEnv = "next"
+    }
+    if(args.packageJson.depedencies.gatsby) {
+      buildEnv = "gatsby"
+    }
   },
   async onBuild( args ) {
+    console.log('buildEnv', buildEnv);
     console.log('Build')
-    if(!args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY) {
-      return args.utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
+    if(buildEnv = "react") {
+      if(!args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY) {
+        return args.utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
+      }
+      const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY
+      if(!args.netlifyConfig.build.environment.STEPZEN_ACCOUNT) {
+        return utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
+      }
     }
-    const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY
-    if(!args.netlifyConfig.build.environment.STEPZEN_ACCOUNT) {
-      return utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
+    if(buildEnv = "next") {
+      if(!args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_API_KEY) {
+        return args.utils.build.failBuild('Failed finding the NEXT_PUBLIC_STEPZEN_API_KEY in the Netlify Environment Variables.')
+      }
+      if(!args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_URI) {
+        return utils.build.failBuild('Failed finding the NEXT_PUBLIC_STEPZEN_URI in the Netlify Environment Variables.')
+      }
     }
     const stepzenAccount = args.netlifyConfig.build.environment.STEPZEN_ACCOUNT
     const stepzenSchema = args.netlifyConfig.build.environment.STEPZEN_SCHEMA_NAME || 'schema'
