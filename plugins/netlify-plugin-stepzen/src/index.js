@@ -60,6 +60,7 @@ module.exports = {
       account: stepzenAccount,
       adminkey: stepzenSecret,
     })
+    await client.upload.configurationset(`${stepzenFolder}/${stepzenConfiguration}`, "stepzen");
     await client.upload.schema(`${stepzenFolder}/${stepzenSchema}`, "stepzen")
     await client.deploy(
       `${stepzenFolder}/${stepzenEndpoint}`,
@@ -68,7 +69,9 @@ module.exports = {
         schema: `${stepzenFolder}/${stepzenSchema}`,
       },
     )
-    console.log('client', client)
+    console.log('client', client.deploy)
+    console.log('schemas', client.upload.schemas)
+    console.log('configurationsets', client.upload.configurationsets)
     args.utils.status.show({summary: 'Success!'})
   },
   async onPostBuild( args ) {},
