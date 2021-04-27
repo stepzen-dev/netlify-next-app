@@ -34,13 +34,13 @@ module.exports = {
     // console.log('buildEnv', buildEnv);
     // console.log('Build')
     // if(buildEnv = "react") {
-      if(!args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY) {
-        return args.utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
-      }
-      const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY
-      if(!args.netlifyConfig.build.environment.STEPZEN_ACCOUNT) {
-        return utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
-      }
+      // if(!args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY) {
+      //   return args.utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
+      // }
+      // const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY
+      // if(!args.netlifyConfig.build.environment.STEPZEN_ACCOUNT) {
+      //   return utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
+      // }
     // }
     if(args.packageJson.dependencies.next) {
       if(!args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_API_KEY) {
