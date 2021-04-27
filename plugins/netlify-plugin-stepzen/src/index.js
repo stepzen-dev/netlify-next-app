@@ -37,7 +37,7 @@ module.exports = {
       // if(!args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY) {
       //   return args.utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
       // }
-      // const stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_ADMIN_KEY
+      const stepzenSecret = args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_API_KEY
       // if(!args.netlifyConfig.build.environment.STEPZEN_ACCOUNT) {
       //   return utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
       // }
