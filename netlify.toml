@@ -10,4 +10,4 @@
 
 [template.environment]
   NEXT_PUBLIC_STEPZEN_API_KEY = "Add your StepZen admin key"
-  STEPZEN_ACCOUNT = "Add your StepZen account name"
+  NEXT_PUBLIC_STEPZEN_ACCOUNT = "Add your StepZen account name"

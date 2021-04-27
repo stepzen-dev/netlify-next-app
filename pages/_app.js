@@ -1,13 +1,13 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
-import '../styles/globals.css'
+import "../styles/globals.css";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   headers: {
     Authorization: `Apikey ${process.env.NEXT_PUBLIC_STEPZEN_API_KEY}`,
   },
-  uri: process.env.NEXT_PUBLIC_STEPZEN_URI
+  uri: `https://${process.env.NEXT_PUBLIC_STEPZEN_ACCOUNT}.stepzen.net/netlify/endpoint/__graphql`,
 });
 
 function MyApp({ Component, pageProps }) {
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
     <ApolloProvider client={client}>
       <Component {...pageProps} />
     </ApolloProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

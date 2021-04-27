@@ -16,8 +16,6 @@ module.exports = {
     args.utils.status.show({ summary: 'Success!' })
     let buildEnv = "react"
 
-    args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_URI = `https://${args.netlifyConfig.build.environment.STEPZEN_ACCOUNT}.stepzen.net/api/affable-buffalo/__graphql`
-
     // Better environment variables to set as conditional?
 
 
@@ -44,7 +42,6 @@ module.exports = {
       //   return utils.build.failBuild('Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.')
       // }
     // }
-
     if(args.packageJson.dependencies.next) {
       if(!args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_API_KEY) {
         return args.utils.build.failBuild('Failed finding the NEXT_PUBLIC_STEPZEN_API_KEY in the Netlify Environment Variables.')
@@ -53,7 +50,7 @@ module.exports = {
         return utils.build.failBuild('Failed finding the NEXT_PUBLIC_STEPZEN_URI in the Netlify Environment Variables.')
       }
     }
-    const stepzenAccount = args.netlifyConfig.build.environment.STEPZEN_ACCOUNT
+    const stepzenAccount = args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_ACCOUNT
     const stepzenSchema = args.netlifyConfig.build.environment.STEPZEN_SCHEMA_NAME || 'schema'
     const stepzenEndpoint = args.netlifyConfig.build.environment.STEPZEN_ENDPOINT || 'endpoint'
     const stepzenConfiguration = args.netlifyConfig.build.environment.STEPZEN_CONFIGURATIONSETS || 'configuration'
