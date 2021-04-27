@@ -7,7 +7,7 @@ const client = new ApolloClient({
   headers: {
     Authorization: `Apikey ${process.env.NEXT_PUBLIC_STEPZEN_API_KEY}`,
   },
-  uri: `https://${process.env.NEXT_PUBLIC_STEPZEN_ACCOUNT}.stepzen.net/${process.env.NEXT_PUBLIC_STEPZEN_ENDPOINT}/__graphql`,
+  uri: `https://${process.env.NEXT_PUBLIC_STEPZEN_ACCOUNT}.stepzen.net/${process.env.NEXT_PUBLIC_STEPZEN_FOLDER}/${process.env.NEXT_PUBLIC_STEPZEN_SCHEMA}/__graphql`,
 });
 
 function MyApp({ Component, pageProps }) {

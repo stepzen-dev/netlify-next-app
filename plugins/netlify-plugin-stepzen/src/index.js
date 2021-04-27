@@ -51,23 +51,21 @@ module.exports = {
       }
     }
     const stepzenAccount = args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_ACCOUNT
-    const stepzenSchema = args.netlifyConfig.build.environment.STEPZEN_SCHEMA_NAME || 'schema'
-    const stepzenEndpoint = args.netlifyConfig.build.environment.STEPZEN_ENDPOINT || 'endpoint'
+    const stepzenSchema = args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_SCHEMA || 'schema'
+    const stepzenEndpoint = args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_ENDPOINT || 'endpoint'
     const stepzenConfiguration = args.netlifyConfig.build.environment.STEPZEN_CONFIGURATIONSETS || 'configuration'
-    const stepzenFolder = args.netlifyConfig.build.environment.STEPZEN_FOLDER || 'netlify'
-
-    const stepzenFolderEndpoint = args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_ENDPOINT || 'netlify/endpoint'
+    const stepzenFolder = args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_FOLDER || 'netlify'
 
     console.log(chalk.white(`using ${stepzenAccount}`))
-    console.log(chalk.white(`endpoint is ${stepzenFolderEndpoint}`))
-    console.log(chalk.white(`pushing schema to ${stepzenFolder}/${stepzenSchema}, and deploying to ${stepzenFolderEndpoint} using ${stepzenFolder}/${stepzenConfiguration}`))
+    console.log('update for testing deploy')
+    console.log(chalk.white(`pushing schema to ${stepzenFolder}/${stepzenSchema}, and deploying to ${stepzenFolder}/${stepzenEndpoint} using ${stepzenFolder}/${stepzenConfiguration}`))
     const client = await stepzen.client({
       account: stepzenAccount,
       adminkey: stepzenSecret,
     })
     await client.upload.schema(`${stepzenFolder}/${stepzenSchema}`, "stepzen")
     await client.deploy(
-      `${stepzenFolderEndpoint}`,
+      `${stepzenFolder}/${stepzenEndpoint}`,
       {
         configurationsets: [`${stepzenFolder}/${stepzenConfiguration}`],
         schema: `${stepzenFolder}/${stepzenSchema}`,
