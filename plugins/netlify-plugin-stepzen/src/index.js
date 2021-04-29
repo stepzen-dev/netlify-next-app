@@ -29,8 +29,6 @@ module.exports = {
     if(args.packageJson.dependencies.gatsby) {
       buildEnv = "gatsby"
     }
-  },
-  async onBuild( args ) {
     // console.log('buildEnv', buildEnv);
     // console.log('Build')
     // if(buildEnv = "react") {
@@ -73,6 +71,8 @@ module.exports = {
     console.log('schemas', client.upload.schemas)
     console.log('configurationsets', client.upload.configurationsets)
     args.utils.status.show({summary: 'Success!'})
+  },
+  async onBuild( args ) {
   },
   async onPostBuild( args ) {},
   async onSuccess( args ) {},
