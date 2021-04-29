@@ -12,4 +12,8 @@
   STEPZEN_NAME = "Name your endpoint. Defaults to endpoint"
   STEPZEN_FOLDER = "Name your folder. Defaults to netlify"
   STEPZEN_ADMIN_KEY = "Add your StepZen admin key"
-  STEPZEN_ACCOUNT = "Add your StepZen account name"
+  STEPZEN_ACCOUNT = "Add your StepZen account name"  
+  NEXT_PUBLIC_STEPZEN_NAME = STEPZEN_NAME
+  NEXT_PUBLIC_STEPZEN_FOLDER = STEPZEN_FOLDER
+  NEXT_PUBLIC_STEPZEN_API_KEY = STEPZEN_ADMIN_KEY
+  NEXT_PUBLIC_STEPZEN_ACCOUNT = STEPZEN_ACCOUNT
