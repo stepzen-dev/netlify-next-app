@@ -3,70 +3,59 @@ const chalk = require('chalk')
 const stepzen = require('@stepzen/sdk')
 
 async function run(args) {
-  // args
-  console.log('args', args)
+  const {
+    STEPZEN_ACCOUNT,
+    STEPZEN_ADMIN_KEY,
+    STEPZEN_FOLDER = 'netlify',
+    STEPZEN_NAME,
+  } = args.netlifyConfig.build.environment
 
-  let stepzenSecret = ''
-  let stepzenAccount = ''
-  let stepzenSchema = 'schema'
-  let stepzenEndpoint = 'endpoint'
-  let stepzenConfiguration = 'configuration'
-  let stepzenFolder = 'netlify'
-  let buildEnv = 'react'
-
-  if (args.packageJson.dependencies.next) {
-    buildEnv = 'next'
-    stepzenAccount =
-      args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_ACCOUNT
-    stepzenSchema =
-      args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_SCHEMA ||
-      'schema'
-    stepzenEndpoint =
-      args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_ENDPOINT ||
-      'endpoint'
-    stepzenConfiguration =
-      args.netlifyConfig.build.environment.STEPZEN_CONFIGURATIONSETS ||
-      'configuration'
-    stepzenFolder =
-      args.netlifyConfig.build.environment.NEXT_PUBLIC_STEPZEN_FOLDER ||
-      'netlify'
-  } else if (args.packageJson.dependencies.gatsby) {
-    buildEnv = 'gatsby'
-    stepzenSecret = args.netlifyConfig.build.environment.STEPZEN_API_KEY
-    stepzenAccount = args.netlifyConfig.build.environment.STEPZEN_ACCOUNT
-    stepzenSchema =
-      args.netlifyConfig.build.environment.STEPZEN_SCHEMA || 'schema'
-    stepzenEndpoint =
-      args.netlifyConfig.build.environment.STEPZEN_ENDPOINT || 'endpoint'
-    stepzenConfiguration =
-      args.netlifyConfig.build.environment.STEPZEN_CONFIGURATIONSETS ||
-      'configuration'
-    stepzenFolder =
-      args.netlifyConfig.build.environment.STEPZEN_FOLDER || 'netlify'
-  } else {
-    buildEnv = 'react'
+  if (!STEPZEN_ACCOUNT) {
+    return args.utils.build.failBuild(
+      'Failed finding the STEPZEN_ACCOUNT in the Netlify Environment Variables.',
+    )
   }
 
-  console.log(
-    chalk.white(
-      `pushing schema to ${stepzenFolder}/${stepzenSchema}, and deploying to ${stepzenFolder}/${stepzenEndpoint} using ${stepzenFolder}/${stepzenConfiguration}`,
-    ),
-  )
+  if (!STEPZEN_ADMIN_KEY) {
+    return args.utils.build.failBuild(
+      'Failed finding the STEPZEN_ADMIN_KEY in the Netlify Environment Variables.',
+    )
+  }
+
+  if (!STEPZEN_FOLDER) {
+    return args.utils.build.failBuild(
+      'Failed finding the STEPZEN_FOLDER in the Netlify Environment Variables.',
+    )
+  }
+
+  if (!STEPZEN_NAME) {
+    return args.utils.build.failBuild(
+      'Failed finding the STEPZEN_NAME in the Netlify Environment Variables.',
+    )
+  }
+
+  const endpoint = `${STEPZEN_FOLDER}/${STEPZEN_NAME}`
+
+  console.log(chalk.white(`using ${STEPZEN_ACCOUNT}`))
+  console.log('update for testing deploy')
+  console.log(chalk.white(`pushing schema to ${endpoint}`))
+
   const client = await stepzen.client({
-    account: stepzenAccount,
-    adminkey: stepzenSecret,
+    account: STEPZEN_ACCOUNT,
+    adminkey: STEPZEN_ADMIN_KEY,
   })
-  await client.upload.configurationset(
-    `${stepzenFolder}/${stepzenConfiguration}`,
-    'stepzen/config.yaml',
-  )
-  await client.upload.schema(`${stepzenFolder}/${stepzenSchema}`, 'stepzen')
-  await client.deploy(`${stepzenFolder}/${stepzenEndpoint}`, {
-    configurationsets: [
-      `${stepzenFolder}/${stepzenConfiguration}`,
-      'stepzen/default',
-    ],
-    schema: `${stepzenFolder}/${stepzenSchema}`,
+
+  let configurationsets = ['stepzen/default']
+  if (args.utils.git.fileMatch('stepzen/config.yaml')) {
+    await client.upload.configurationset(endpoint, 'stepzen/config.yaml')
+    configurationsets = configurationsets.concat(endpoint)
+  }
+
+  await client.upload.schema(endpoint, 'stepzen')
+
+  await client.deploy(endpoint, {
+    configurationsets,
+    schema: endpoint,
   })
 }
 
