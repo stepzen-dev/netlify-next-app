@@ -10,10 +10,10 @@
 
 [template.environment]
   STEPZEN_NAME = "Name your endpoint. Defaults to endpoint"
-  NEXT_PUBLIC_STEPZEN_NAME = "Installing nextjs? Copy and paste your endpoint here."
+  NEXT_PUBLIC_STEPZEN_NAME = "Copy and paste your endpoint here."
   STEPZEN_FOLDER = "Name your folder. Defaults to netlify"
-  NEXT_PUBLIC_STEPZEN_FOLDER = "Installing nextjs? Copy and paste your folder here."
+  NEXT_PUBLIC_STEPZEN_FOLDER = "Copy and paste your folder here."
   STEPZEN_ADMIN_KEY = "Add your StepZen admin key"
-  NEXT_PUBLIC_STEPZEN_ADMIN_KEY = "Installing nextjs? Copy and paste your admin key here."
+  NEXT_PUBLIC_STEPZEN_ADMIN_KEY = "Copy and paste your admin key here."
   STEPZEN_ACCOUNT = "Add your StepZen account name"  
-  NEXT_PUBLIC_STEPZEN_ACCOUNT = "Installing nextjs? Copy and paste your account here."
+  NEXT_PUBLIC_STEPZEN_ACCOUNT = "Copy and paste your account here."
